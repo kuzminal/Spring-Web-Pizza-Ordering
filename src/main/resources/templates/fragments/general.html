@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <title>Thymeleaf Fragments: home</title>
     <meta charset="UTF-8"/>
@@ -22,29 +23,36 @@
                 </li> -->
             </ul>
             <form class="form-inline mt-2 mt-md-0">
-                <input class="form-control mr-sm-2" type="text" th:placeholder="#{navigation.search}" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" th:text="#{navigation.search}"></button>
+                <input class="form-control mr-sm-2" type="text" th:placeholder="#{navigation.search}"
+                       aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit"
+                        th:text="#{navigation.search}"></button>
             </form>
-            <ul class="navbar-nav mt-2 mt-md-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <img id="en" class="lang" th:src="@{/images/us_flag.png}"/>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <img id="ru" class="lang" th:src="@{/images/ru_flag.png}"/>
-                    </a>
-                </li>
-            </ul>
+            <!--<a class="btn btn-sm btn-outline-secondary" sec:authorize="isAuthenticated()" th:href="@{/logout}">Sign
+                out</a>
+            <a class="btn btn-sm btn-outline-secondary" sec:authorize="!isAuthenticated()" th:href="@{/login}">Sign
+                in</a>-->
         </div>
     </nav>
+</header>
+<footer class="footer">
+    <div class="container">
+        <div class="text-right">
+            <span class="m-0 text-right" th:text="#{footer.lang}"></span>
+            <a href="#">
+                <img id="en" class="lang" th:src="@{/images/us_flag.png}"/>
+            </a>
+            <a href="#">
+                <img id="ru" class="lang" th:src="@{/images/ru_flag.png}"/>
+            </a>
+        </div>
+    </div>
     <script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
     <script type="text/javascript">
-        $(document).ready(function() {
+        $(document).ready(function () {
             $(".lang").click(function () {
                 var selectedOption = this.id;
-                if (selectedOption !== ''){
+                if (selectedOption !== '') {
                     var url = window.location.href;
                     url = url.split('?')[0];
                     window.location.replace(url + '?lang=' + selectedOption);
@@ -52,11 +60,6 @@
             });
         });
     </script>
-</header>
-<footer class="footer">
-    <div class="container">
-        <span class="text-muted" th:text="#{footer.main}"></span>
-    </div>
 </footer>
 </body>
 </html>
