@@ -6,10 +6,7 @@ import com.kuzmin.pizzaordering.domain.Pizza;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -53,5 +50,11 @@ public class DesignPizzaController {
                 .stream()
                 .filter(x -> x.getType().equals(type))
                 .collect(Collectors.toList());
+    }
+
+    @PostMapping
+    public String processPizza(Pizza pizza) {
+        log.info("Processing taco: " + pizza);
+        return "redirect:/orders/current";
     }
 }
