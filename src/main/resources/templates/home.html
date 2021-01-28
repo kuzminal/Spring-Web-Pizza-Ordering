@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{home.title}"></title>
+    <link th:href="@{/webjars/bootstrap/4.6.0/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link rel="stylesheet" th:href="@{css/styles.css}"/>
+</head>
+<body>
+<header th:insert="fragments/general.html :: header"> </header>
+<main class="container">
+    <div class="bg-light p-5 rounded">
+        <h1 th:text="#{home.label}"></h1>
+        <p class="lead" th:text="#{home.text}"></p>
+    </div>
+</main>
+<div th:insert="fragments/general.html :: footer"></div>
+<!-- Bootstrap core JavaScript
+    ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper/2.5.4/cjs/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.6.0/js/bootstrap.min.js}"></script>
+</body>
+</html>
