@@ -7,11 +7,18 @@
     <link rel="stylesheet" th:href="@{css/styles.css}"/>
 </head>
 <body>
-<header th:insert="fragments/general.html :: header"> </header>
+<header th:insert="fragments/general.html :: header"></header>
 <main class="container">
     <div class="bg-light p-5 rounded">
-        <h1 th:text="#{home.label}"></h1>
-        <p class="lead" th:text="#{home.text}"></p>
+        <div class="media">
+            <div class="media-left">
+                <img class="media-object" th:src="@{images/pizza-pizza.png}">
+            </div>
+            <div class="media-body">
+                <h1 th:text="#{home.label}"></h1>
+                <p class="lead" th:text="#{home.text}"></p>
+            </div>
+        </div>
     </div>
 </main>
 <div th:insert="fragments/general.html :: footer"></div>
