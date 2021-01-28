@@ -10,12 +10,12 @@
 <body>
 <header th:insert="fragments/general.html :: header"> </header>
 <main role="main" class="container">
-    <h1>Design your pizza!</h1>
+    <h1 th:text="#{design.main.label}"></h1>
     <!--<img th:src="@{/images/pizza-pizza.png}"/> -->
     <form method="POST" th:object="${pizza}">
         <div class="grid">
             <div class="ingredient-group" id="wraps">
-                <h3>Designate your wrap:</h3>
+                <h3 th:text="#{design.choose.wrap}"></h3>
                 <div th:each="ingredient : ${wrap}">
                     <input th:field="*{ingredients}" type="checkbox"
                            th:value="${ingredient.id}"/>
@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div class="ingredient-group" id="proteins">
-                <h3>Pick your protein:</h3>
+                <h3 th:text="#{design.choose.protein}"></h3>
                 <div th:each="ingredient : ${protein}">
                     <input th:field="*{ingredients}" type="checkbox"
                            th:value="${ingredient.id}"/>
@@ -31,7 +31,7 @@
                 </div>
             </div>
             <div class="ingredient-group" id="cheeses">
-                <h3>Choose your cheese:</h3>
+                <h3 th:text="#{design.choose.cheese}"></h3>
                 <div th:each="ingredient : ${cheese}">
                     <input th:field="*{ingredients}" type="checkbox"
                            th:value="${ingredient.id}"/>
@@ -39,7 +39,7 @@
                 </div>
             </div>
             <div class="ingredient-group" id="veggies">
-                <h3>Determine your veggies:</h3>
+                <h3 th:text="#{design.choose.veggies}"></h3>
                 <div th:each="ingredient : ${veggies}">
                     <input th:field="*{ingredients}" type="checkbox"
                            th:value="${ingredient.id}"/>
@@ -47,7 +47,7 @@
                 </div>
             </div>
             <div class="ingredient-group" id="sauces">
-                <h3>Select your sauce:</h3>
+                <h3 th:text="#{design.choose.sauce}"></h3>
                 <div th:each="ingredient : ${sauce}">
                     <input th:field="*{ingredients}" type="checkbox"
                            th:value="${ingredient.id}"/>
@@ -56,10 +56,9 @@
             </div>
         </div>
         <div>
-            <h3>Name your pizza creation:</h3>
+            <h3 th:text="#{design.creation.name}"></h3>
             <input type="text" th:field="*{name}"/>
-            <br/>
-            <button>Submit Your Pizza</button>
+            <button class="btn btn-dark" th:text="#{button.submit.design}"></button>
         </div>
     </form>
 </main>
