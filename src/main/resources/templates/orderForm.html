@@ -21,6 +21,8 @@
                         <span class="validationError"
                               th:if="${#fields.hasErrors('deliveryName')}"
                               th:errors="*{deliveryName}">Error</span>
+                        <div class="invalid-feedback" th:text="#{orders.delivery.name.validation}">
+                        </div>
                     </div>
 
                     <div class="col-12">
@@ -30,15 +32,19 @@
                         <span class="validationError"
                               th:if="${#fields.hasErrors('deliveryStreet')}"
                               th:errors="*{deliveryStreet}">Error</span>
+                        <div class="invalid-feedback" th:text="#{orders.delivery.street.validation}">
+                        </div>
                     </div>
 
                     <div class="col-12">
                         <label for="deliveryCity" class="form-label" th:text="#{orders.delivery.city}"></label>
                         <input th:field="*{deliveryCity}" th:placeholder="#{orders.delivery.city.placeholder}"  type="text" class="form-control" id="deliveryCity"
-                               placeholder="Delivery City">
+                               placeholder="Delivery City" required>
                         <span class="validationError"
                               th:if="${#fields.hasErrors('deliveryCity')}"
                               th:errors="*{deliveryCity}">Error</span>
+                        <div class="invalid-feedback" th:text="#{orders.delivery.city.validation}">
+                        </div>
                     </div>
 
                     <div class="col-12">
@@ -48,6 +54,8 @@
                         <span class="validationError"
                               th:if="${#fields.hasErrors('deliveryState')}"
                               th:errors="*{deliveryState}">Error</span>
+                        <div class="invalid-feedback" th:text="#{orders.delivery.state.validation}">
+                        </div>
                     </div>
 
                     <div class="col-12">
@@ -68,6 +76,8 @@
                         <span class="validationError"
                               th:if="${#fields.hasErrors('ccNumber')}"
                               th:errors="*{ccNumber}">Error</span>
+                        <div class="invalid-feedback" th:text="#{orders.delivery.ccNumber.validation}">
+                        </div>
                     </div>
 
                     <div class="col-md-4">
@@ -77,6 +87,8 @@
                         <span class="validationError"
                               th:if="${#fields.hasErrors('ccExpiration')}"
                               th:errors="*{ccExpiration}">Error</span>
+                        <div class="invalid-feedback" th:text="#{orders.delivery.ccExpiration.validation}">
+                        </div>
                     </div>
 
                     <div class="col-md-3">
@@ -85,6 +97,8 @@
                         <span class="validationError"
                               th:if="${#fields.hasErrors('ccCVV')}"
                               th:errors="*{ccCVV}">Error</span>
+                        <div class="invalid-feedback" th:text="#{orders.delivery.ccCVV.validation}">
+                        </div>
                     </div>
                 </div>
 
@@ -101,5 +115,7 @@
 <script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
 <script th:src="@{/webjars/popper.js/2.5.4/cjs/popper.js}"></script>
 <script th:src="@{/webjars/bootstrap/4.6.0/js/bootstrap.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.6.0/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/js/validation.js}"></script>
 </body>
 </html>
