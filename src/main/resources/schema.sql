@@ -1,6 +1,6 @@
-create table if not exists Taco_Order (
-                                          id identity,
-                                          delivery_Name varchar(50) not null,
+create table if not exists pizza_order (
+    id identity,
+    delivery_Name varchar(50) not null,
     delivery_Street varchar(50) not null,
     delivery_City varchar(50) not null,
     delivery_State varchar(2) not null,
@@ -10,24 +10,22 @@ create table if not exists Taco_Order (
     cc_cvv varchar(3) not null,
     placed_at timestamp not null
     );
-create table if not exists Taco (
-                                    id identity,
-                                    name varchar(50) not null,
-    taco_order bigint not null,
-    taco_order_key bigint not null,
+create table if not exists pizza (
+    id identity,
+    name varchar(50) not null,
+    pizza_order bigint not null,
+    pizza_order_key bigint not null,
     created_at timestamp not null
     );
-create table if not exists Ingredient_Ref (
+create table if not exists ingredient_ref (
     ingredient varchar(4) not null,
-    taco bigint not null,
-    taco_key bigint not null
+    pizza bigint not null,
+    pizza_key bigint not null
     );
-create table if not exists Ingredient (
+create table if not exists ingredient (
     id varchar(4) not null,
     name varchar(25) not null,
     type varchar(10) not null
     );
-alter table Taco
-    add foreign key (taco_order) references Taco_Order(id);
-alter table Ingredient_Ref
-    add foreign key (ingredient) references Ingredient(id);
+alter table pizza add foreign key (pizza_order) references pizza_order(id);
+alter table ingredient_ref add foreign key (ingredient) references ingredient(id);
