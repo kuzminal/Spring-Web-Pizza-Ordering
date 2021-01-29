@@ -18,32 +18,36 @@
                         <label for="deliveryName" class="form-label" th:text="#{orders.delivery.name}"></label>
                         <input th:field="*{deliveryName}" th:placeholder="#{orders.delivery.name.placeholder}" type="text" class="form-control" id="deliveryName"
                                placeholder="" value="" required>
-                        <div class="invalid-feedback" th:text="#{orders.delivery.name.validation}">
-                        </div>
+                        <span class="validationError"
+                              th:if="${#fields.hasErrors('deliveryName')}"
+                              th:errors="*{deliveryName}">Error</span>
                     </div>
 
                     <div class="col-12">
                         <label for="deliveryStreet" class="form-label" th:text="#{orders.delivery.street}"></label>
                         <input th:field="*{deliveryStreet}" th:placeholder="#{orders.delivery.street.placeholder}" type="text" class="form-control" id="deliveryStreet"
                                placeholder="Delivery Street" required>
-                        <div class="invalid-feedback" th:text="#{orders.delivery.street.validation}">
-                        </div>
+                        <span class="validationError"
+                              th:if="${#fields.hasErrors('deliveryStreet')}"
+                              th:errors="*{deliveryStreet}">Error</span>
                     </div>
 
                     <div class="col-12">
                         <label for="deliveryCity" class="form-label" th:text="#{orders.delivery.city}"></label>
                         <input th:field="*{deliveryCity}" th:placeholder="#{orders.delivery.city.placeholder}"  type="text" class="form-control" id="deliveryCity"
                                placeholder="Delivery City">
-                        <div class="invalid-feedback" th:text="#{orders.delivery.city.validation}">
-                        </div>
+                        <span class="validationError"
+                              th:if="${#fields.hasErrors('deliveryCity')}"
+                              th:errors="*{deliveryCity}">Error</span>
                     </div>
 
                     <div class="col-12">
                         <label for="deliveryState" class="form-label" th:text="#{orders.delivery.state}"></label>
                         <input th:field="*{deliveryState}" th:placeholder="#{orders.delivery.state.placeholder}"  type="text" class="form-control" id="deliveryState"
                                placeholder="Вelivery State" required>
-                        <div class="invalid-feedback" th:text="#{orders.delivery.state.validation}">
-                        </div>
+                        <span class="validationError"
+                              th:if="${#fields.hasErrors('deliveryState')}"
+                              th:errors="*{deliveryState}">Error</span>
                     </div>
 
                     <div class="col-12">
@@ -61,26 +65,26 @@
                         <label for="ccNumber" class="form-label" th:text="#{orders.delivery.ccNumber}">Credit Card #: </label>
                         <input th:field="*{ccNumber}" th:placeholder="#{orders.delivery.ccNumber.placeholder}"  type="text" class="form-control" id="ccNumber"
                                placeholder="Card Number" required>
-                        <div class="invalid-feedback" th:text="#{orders.delivery.ccNumber.validation}">
-                            Please input a valid card number.
-                        </div>
+                        <span class="validationError"
+                              th:if="${#fields.hasErrors('ccNumber')}"
+                              th:errors="*{ccNumber}">Error</span>
                     </div>
 
                     <div class="col-md-4">
                         <label for="ccExpiration" class="form-label" th:text="#{orders.delivery.ccExpiration}">Expiration: </label>
                         <input th:field="*{ccExpiration}" th:placeholder="#{orders.delivery.ccExpiration.placeholder}"  type="text" class="form-control" id="ccExpiration"
                                placeholder="Card expiration" required>
-                        <div class="invalid-feedback" th:text="#{orders.delivery.ccExpiration.validation}">
-                            Please provide a valid card expiration.
-                        </div>
+                        <span class="validationError"
+                              th:if="${#fields.hasErrors('ccExpiration')}"
+                              th:errors="*{ccExpiration}">Error</span>
                     </div>
 
                     <div class="col-md-3">
                         <label for="ccCVV" class="form-label" th:text="#{orders.delivery.ccCVV}">CVV: </label>
                         <input th:field="*{ccCVV}" th:placeholder="#{orders.delivery.ccCVV.placeholder}"  type="text" class="form-control" id="ccCVV" placeholder="" required>
-                        <div class="invalid-feedback" th:text="#{orders.delivery.ccCVV.validation}">
-                            Card CVV code required.
-                        </div>
+                        <span class="validationError"
+                              th:if="${#fields.hasErrors('ccCVV')}"
+                              th:errors="*{ccCVV}">Error</span>
                     </div>
                 </div>
 
