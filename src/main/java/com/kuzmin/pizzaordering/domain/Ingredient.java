@@ -1,14 +1,16 @@
 package com.kuzmin.pizzaordering.domain;
 
 import lombok.*;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Table;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Data
-@Table
+@Entity
 @AllArgsConstructor
-@NoArgsConstructor(access= AccessLevel.PRIVATE, force=true)
+@NoArgsConstructor
 public class Ingredient {
+
     @Id
     private String id;
     private String name;
