@@ -2,9 +2,9 @@ package com.kuzmin.pizzaordering.domain;
 
 import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.*;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
@@ -15,15 +15,12 @@ import java.util.Date;
 import java.util.List;
 
 @Data
-@Entity
-@EntityListeners(AuditingEntityListener.class)
+@Document
 public class PizzaOrder implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
     @CreatedDate
-    @Column(name = "placed_at")
     private Date placedAt;
     @NotBlank(message = "{orders.delivery.name.validation}")
     private String deliveryName;
@@ -42,10 +39,8 @@ public class PizzaOrder implements Serializable {
     @Pattern(regexp = "^(0[1-9]|1[0-2])([\\/])([1-9][0-9])$",
             message = "{orders.delivery.ccExpiration.validation}")
     private String ccExpiration;
-    @Column(name = "cc_cvv")
     @Digits(integer = 3, fraction = 0, message = "{orders.delivery.ccCVV.validation}")
     private String ccCVV;
-    @OneToMany(cascade = CascadeType.ALL)
     private List<Pizza> pizzas = new ArrayList<>();
 
     public void addPizza(Pizza pizza) {
