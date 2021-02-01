@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Taco Cloud</title>
+    <link th:href="@{/webjars/bootstrap/4.6.0/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link rel="stylesheet" th:href="@{/css/styles.css}"/>
+</head>
+<body>
+<header th:insert="fragments/general.html :: header"></header>
+<h1>Login</h1>
+<img th:src="@{/images/pizza-pizza.png}"/>
+<div th:if="${error}">
+    Unable to login. Check your username and password.
+</div>
+<p>New here? Click
+    <a th:href="@{/registration}">here</a> to register.</p>
+<form method="POST" th:action="@{/login}" id="loginForm">
+    <label for="username">Username: </label>
+    <input type="text" name="username" id="username"/><br/>
+    <label for="password">Password: </label>
+    <input type="password" name="password" id="password"/><br/>
+    <input type="submit" value="Login"/>
+</form>
+<div th:insert="fragments/general.html :: footer"></div>
+<!-- Bootstrap core JavaScript
+    ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/2.5.4/cjs/popper.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.6.0/js/bootstrap.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.6.0/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/js/validation.js}"></script>
+</body>
+</html>
