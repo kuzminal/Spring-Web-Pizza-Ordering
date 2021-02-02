@@ -2,10 +2,9 @@ package com.kuzmin.pizzaordering.domain;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @Entity
@@ -18,6 +17,11 @@ public class Ingredient {
     private String name;
     @Enumerated(EnumType.STRING)
     private Type type;
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinTable( name = "pizza_ingredients",
+            joinColumns = @JoinColumn( name = "pizza_id"),
+            inverseJoinColumns = @JoinColumn( name = "ingredients_id"))
+    private Set<Pizza> pizzas = new HashSet<>();
 
     public enum Type {
         WRAP, PROTEIN, VEGGIES, CHEESE, SAUCE

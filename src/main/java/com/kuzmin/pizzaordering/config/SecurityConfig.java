@@ -50,6 +50,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .oauth2Login()
                 .loginPage("/login");
-        http.csrf().disable();
+//        http.csrf().disable();
     }
 }

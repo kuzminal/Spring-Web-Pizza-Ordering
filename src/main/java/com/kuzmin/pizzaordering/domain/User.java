@@ -10,8 +10,10 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "\"user\"")
@@ -31,6 +33,12 @@ public class User implements UserDetails {
     private final String state;
     private final String zip;
     private final String phoneNumber;
+
+    @OneToMany(cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY,
+            mappedBy = "id")
+    private List<PizzaOrder> pizzaOrders = new ArrayList<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

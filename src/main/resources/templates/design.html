@@ -13,6 +13,7 @@
     <h1 th:text="#{design.main.label}"></h1>
     <!--<img th:src="@{/images/pizza-pizza.png}"/> -->
     <form method="POST" th:object="${pizza}">
+        <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
         <div class="grid">
             <div class="ingredient-group" id="wraps">
                 <h3 th:text="#{design.choose.wrap}"></h3>

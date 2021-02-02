@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomeController {
     @GetMapping
     public String showDesignForm(Model model) {
-        model.addAttribute("main");
+        model.addAttribute("main", "");
         return "home";
     }
 

@@ -42,7 +42,7 @@ public class DesignPizzaController {
     @GetMapping
     public String showDesignForm(Model model) {
         model.addAttribute("pizza", new Pizza());
-        model.addAttribute("design");
+        model.addAttribute("design", "");
         return "design";
     }
 
@@ -59,6 +59,7 @@ public class DesignPizzaController {
             return "design";
         }
         log.info("Processing taco: " + pizza);
+
         return "redirect:/orders/current";
     }
 }

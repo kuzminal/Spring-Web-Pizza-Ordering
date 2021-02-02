@@ -50,6 +50,9 @@ public class PizzaOrder implements Serializable {
             fetch = FetchType.LAZY,
             mappedBy = "id")
     private List<Pizza> pizzas = new ArrayList<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public void addPizza(Pizza pizza) {
         this.pizzas.add(pizza);
