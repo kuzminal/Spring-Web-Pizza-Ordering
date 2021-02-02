@@ -42,6 +42,7 @@ public class DesignPizzaController {
     @GetMapping
     public String showDesignForm(Model model) {
         model.addAttribute("pizza", new Pizza());
+        model.addAttribute("design");
         return "design";
     }
 

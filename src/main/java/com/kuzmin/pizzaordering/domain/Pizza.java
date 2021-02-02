@@ -23,6 +23,9 @@ public class Pizza {
     @Size(min = 1, message = "You must choose at least 1 ingredient")
     @ManyToMany()
     private List<Ingredient> ingredients = new ArrayList<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "order_id")
+    private PizzaOrder pizzaOrder;
 
     public void addIngredient(Ingredient ingredient) {
         this.ingredients.add(ingredient);

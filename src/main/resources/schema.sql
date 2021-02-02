@@ -1,5 +1,5 @@
 create table if not exists pizza_order (
-    id serial PRIMARY KEY NOT NULL ,
+    id bigserial PRIMARY KEY NOT NULL ,
     delivery_Name varchar(50) not null,
     delivery_Street varchar(50) not null,
     delivery_City varchar(50) not null,
@@ -11,7 +11,7 @@ create table if not exists pizza_order (
     placed_at timestamp not null
     );
 create table if not exists pizza (
-    id serial PRIMARY KEY NOT NULL ,
+    id bigserial PRIMARY KEY NOT NULL ,
     name varchar(50) not null,
     pizza_order bigint not null,
     pizza_order_key bigint not null,
@@ -29,7 +29,7 @@ create table if not exists ingredient (
     );
 
 create table if not exists "user" (
-    id serial PRIMARY KEY NOT NULL ,
+    id bigserial PRIMARY KEY NOT NULL ,
     username varchar(25) not null,
     password varchar(150) not null,
     fullname varchar(50) not null,

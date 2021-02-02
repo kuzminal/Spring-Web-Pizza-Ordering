@@ -45,7 +45,10 @@ public class PizzaOrder implements Serializable {
     @Column(name = "cc_cvv")
     @Digits(integer = 3, fraction = 0, message = "{orders.delivery.ccCVV.validation}")
     private String ccCVV;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY,
+            mappedBy = "id")
     private List<Pizza> pizzas = new ArrayList<>();
 
     public void addPizza(Pizza pizza) {

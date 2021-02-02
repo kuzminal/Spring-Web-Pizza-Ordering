@@ -27,6 +27,7 @@ public class OrderController {
     @GetMapping("/current")
     public String orderForm(Model model) {
         model.addAttribute("pizzaOrder", new PizzaOrder());
+        model.addAttribute("orders");
         return "orderForm";
     }
 

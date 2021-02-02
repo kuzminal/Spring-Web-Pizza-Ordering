@@ -11,36 +11,44 @@
 <body>
 <header>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-        <a class="navbar-brand" href="#">Pizza Cloud</a>
+        <a class="navbar-brand" th:href="@{/}">Pizza Cloud</a>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" th:href="@{/}" th:text="#{navigation.home}"></a>
+                <li th:if="${main}" class="nav-item active">
+                    <a class="nav-link" th:href="@{/}" sec:authorize="isAuthenticated()"
+                       th:text="#{navigation.home}"></a>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" th:href="@{/design}" th:text="#{navigation.design}"></a>
+                <li th:unless="${main}" class="nav-item">
+                    <a class="nav-link" th:href="@{/}" sec:authorize="isAuthenticated()"
+                       th:text="#{navigation.home}"></a>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" th:href="@{/orders/current}" th:text="#{navigation.orders}"></a>
+                <li th:if="${design}" class="nav-item active">
+                    <a class="nav-link" th:href="@{/design}" sec:authorize="isAuthenticated()"
+                       th:text="#{navigation.design}"></a>
+                </li>
+                <li th:unless="${design}" class="nav-item">
+                    <a class="nav-link" th:href="@{/design}" sec:authorize="isAuthenticated()"
+                       th:text="#{navigation.design}"></a>
+                </li>
+                <li th:if="${orders}" class="nav-item active">
+                    <a class="nav-link" th:href="@{/orders/current}" sec:authorize="isAuthenticated()"
+                       th:text="#{navigation.orders}"></a>
+                </li>
+                <li th:unless="${orders}" class="nav-item">
+                    <a class="nav-link" th:href="@{/orders/current}" sec:authorize="isAuthenticated()"
+                       th:text="#{navigation.orders}"></a>
                 </li>
                 <!--<li class="nav-item">
                     <a class="nav-link disabled" href="#">Disabled</a>
                 </li> -->
             </ul>
-
-            <!--            Поиск-->
-            <!--<form class="form-inline mt-2 mt-md-0">
-                <input class="form-control mr-sm-2" type="text" th:placeholder="#{navigation.search}"
-                       aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit"
-                        th:text="#{navigation.search}"></button>
-            </form>-->
-
             <!--            Логин-->
-            <!--<a class="btn btn-sm btn-outline-secondary" sec:authorize="isAuthenticated()" th:href="@{/logout}">Sign
+            <a class="btn btn-sm btn-outline-danger" sec:authorize="isAuthenticated()" th:href="@{/logout}"
+               th:text="#{navigation.signout}">Sign
                 out</a>
-            <a class="btn btn-sm btn-outline-secondary" sec:authorize="!isAuthenticated()" th:href="@{/login}">Sign
-                in</a>-->
+            <a class="btn btn-sm btn-outline-success" sec:authorize="!isAuthenticated()" th:href="@{/login}"
+               th:text="#{navigation.signin}">Sign
+                in</a>
         </div>
     </nav>
 </header>
@@ -48,25 +56,28 @@
     <div class="container">
         <div class="text-right">
             <span class="m-0 text-right" th:text="#{footer.lang}"></span>
-            <a href="#">
-                <img id="en" class="lang" th:src="@{/images/us_flag.png}"/>
-            </a>
-            <a href="#">
-                <img id="ru" class="lang" th:src="@{/images/ru_flag.png}"/>
-            </a>
+            <img id="en" class="lang" th:src="@{/images/us_flag.png}"/>
+            <img id="ru" class="lang" th:src="@{/images/ru_flag.png}"/>
         </div>
     </div>
+
     <script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
     <script type="text/javascript">
+        function langClick() {
+            var selectedOption = this.id;
+            if (selectedOption !== '') {
+                var url = window.location.href;
+                url = url.split('?')[0];
+                window.location.replace(url + '?lang=' + selectedOption);
+            }
+        };
+
         $(document).ready(function () {
-            $(".lang").click(function () {
-                var selectedOption = this.id;
-                if (selectedOption !== '') {
-                    var url = window.location.href;
-                    url = url.split('?')[0];
-                    window.location.replace(url + '?lang=' + selectedOption);
-                }
-            });
+            $(".lang").click(langClick);
+        });
+
+        $(function () {
+            $('.selectpicker').selectpicker();
         });
     </script>
 </footer>

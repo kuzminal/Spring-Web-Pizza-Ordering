@@ -8,29 +8,125 @@
 </head>
 <body>
 <header th:insert="fragments/general.html :: header"></header>
-<h1>Register</h1>
-<img th:src="@{/images/pizza-pizza.png}"/>
-<form method="POST" th:action="@{/registration}" id="registerForm">
-    <label for="username">Username: </label>
-    <input type="text" name="username"/><br/>
-    <label for="password">Password: </label>
-    <input type="password" name="password"/><br/>
-    <label for="confirm">Confirm password: </label>
-    <input type="password" name="confirm"/><br/>
-    <label for="fullname">Full name: </label>
-    <input type="text" name="fullname"/><br/>
-    <label for="street">Street: </label>
-    <input type="text" name="street"/><br/>
-    <label for="city">City: </label>
-    <input type="text" name="city"/><br/>
-    <label for="state">State: </label>
-    <input type="text" name="state"/><br/>
-    <label for="zip">Zip: </label>
-    <input type="text" name="zip"/><br/>
-    <label for="phone">Phone: </label>
-    <input type="text" name="phone"/><br/>
-    <input type="submit" value="Register"/>
-</form>
+
+<main class="container">
+    <div class="bg-light p-5 rounded">
+        <div class="col-md-7 col-lg-8">
+            <img th:src="@{/images/pizza-pizza.png}"/>
+            <h4 class="mb-3" th:text="#{registration.username.title}"></h4>
+            <form method="POST" th:action="@{/registration}" th:object="${user}" id="registerForm"
+                  class="needs-validation" novalidate>
+                <div class="row g-3">
+                    <div class="col-sm-6">
+                        <label for="username" class="form-label" th:text="#{registration.label.username}"></label>
+                        <input th:field="*{username}" th:placeholder="#{registration.placeholder.username}" type="text"
+                               class="form-control" id="username" required>
+                        <span class="validationError"
+                              th:if="${#fields.hasErrors('username')}"
+                              th:errors="*{username}">Error</span>
+                        <div class="invalid-feedback" th:text="#{registration.username.validation}">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label for="password" class="form-label" th:text="#{registration.label.password}"></label>
+                        <input th:field="*{password}" th:placeholder="#{registration.placeholder.password}" type="text"
+                               class="form-control" id="password" required>
+                        <span class="validationError"
+                              th:if="${#fields.hasErrors('password')}"
+                              th:errors="*{password}">Error</span>
+                        <div class="invalid-feedback" th:text="#{registration.password.validation}">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label for="confirm" class="form-label" th:text="#{registration.label.confirm}"></label>
+                        <input th:placeholder="#{registration.placeholder.confirm}" type="text" class="form-control"
+                               id="confirm" required>
+                        <div class="invalid-feedback" th:text="#{registration.confirm.validation}">
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="my-4">
+                <h4 class="mb-3" th:text="#{registration.user.information}">User information</h4>
+                <div class="row g-3">
+
+                    <div class="col-sm-12">
+                        <label for="fullname" class="form-label" th:text="#{registration.label.fullname}"></label>
+                        <input th:field="*{fullname}" th:placeholder="#{registration.placeholder.fullname}" type="text"
+                               class="form-control" id="fullname" required>
+                        <span class="validationError"
+                              th:if="${#fields.hasErrors('fullname')}"
+                              th:errors="*{fullname}">Error</span>
+                        <div class="invalid-feedback" th:text="#{registration.fullname.validation}">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <label for="street" class="form-label" th:text="#{registration.label.street}"></label>
+                        <input th:field="*{street}" th:placeholder="#{registration.placeholder.street}" type="text"
+                               class="form-control" id="street" required>
+                        <span class="validationError"
+                              th:if="${#fields.hasErrors('street')}"
+                              th:errors="*{street}">Error</span>
+                        <div class="invalid-feedback" th:text="#{registration.street.validation}">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <label for="city" class="form-label" th:text="#{registration.label.city}"></label>
+                        <input th:field="*{city}" th:placeholder="#{registration.placeholder.city}" type="text"
+                               class="form-control" id="city" required>
+                        <span class="validationError"
+                              th:if="${#fields.hasErrors('city')}"
+                              th:errors="*{city}">Error</span>
+                        <div class="invalid-feedback" th:text="#{registration.city.validation}">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <label for="state" class="form-label" th:text="#{registration.label.state}"></label>
+                        <input th:field="*{state}" th:placeholder="#{registration.placeholder.state}" type="text"
+                               class="form-control" id="state" required>
+                        <span class="validationError"
+                              th:if="${#fields.hasErrors('state')}"
+                              th:errors="*{state}">Error</span>
+                        <div class="invalid-feedback" th:text="#{registration.state.validation}">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <label for="zip" class="form-label" th:text="#{registration.label.zip}"></label>
+                        <input th:field="*{zip}" th:placeholder="#{registration.placeholder.zip}" type="text"
+                               class="form-control" id="zip" required>
+                        <span class="validationError"
+                              th:if="${#fields.hasErrors('zip')}"
+                              th:errors="*{zip}">Error</span>
+                        <div class="invalid-feedback" th:text="#{registration.zip.validation}">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <label for="phone" class="form-label" th:text="#{registration.label.phone}"></label>
+                        <input th:field="*{phoneNumber}" th:placeholder="#{registration.placeholder.phone}" type="text"
+                               class="form-control" id="phone" required>
+                        <span class="validationError"
+                              th:if="${#fields.hasErrors('phoneNumber')}"
+                              th:errors="*{phoneNumber}">Error</span>
+                        <div class="invalid-feedback" th:text="#{registration.phone.validation}">
+                        </div>
+                    </div>
+                </div>
+                <hr class="my-4">
+                <button class="w-100 btn btn-primary btn-lg" type="submit"
+                        th:text="#{orders.delivery.button.submit}"></button>
+            </form>
+        </div>
+    </div>
+</main>
 <div th:insert="fragments/general.html :: footer"></div>
 <!-- Bootstrap core JavaScript
     ================================================== -->

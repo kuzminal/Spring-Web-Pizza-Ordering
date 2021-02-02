@@ -16,7 +16,7 @@ import java.util.Collection;
 @Entity
 @Table(name = "\"user\"")
 @Data
-@NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
+@NoArgsConstructor(access = AccessLevel.PUBLIC, force = true)
 @RequiredArgsConstructor
 public class User implements UserDetails {
     private static final long serialVersionUID = 1L;
