@@ -1,4 +1,4 @@
-package com.kuzmin.pizzaordering.controller;
+package com.kuzmin.pizzaordering.controller.web;
 
 import com.kuzmin.pizzaordering.domain.Pizza;
 import lombok.extern.slf4j.Slf4j;

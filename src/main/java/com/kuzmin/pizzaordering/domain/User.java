@@ -37,7 +37,7 @@ public class User implements UserDetails {
     @OneToMany(cascade = CascadeType.ALL,
             orphanRemoval = true,
             fetch = FetchType.LAZY,
-            mappedBy = "id")
+            mappedBy = "user")
     private List<PizzaOrder> pizzaOrders = new ArrayList<>();
 
     @Override

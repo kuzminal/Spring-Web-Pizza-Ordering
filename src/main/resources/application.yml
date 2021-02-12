@@ -1,0 +1,34 @@
+#My properties
+orders:
+  pageSize: 10
+# Enable https
+server:
+  port: 8443
+  ssl:
+    key-store: classpath:keys/mykeys.jks
+    key-store-password: 123456
+    key-password: 123456
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/pizza
+    username: user
+    password: 123
+    driver-class-name: org.postgresql.Driver
+#    initialization-mode: always
+    hikari:
+      connection-timeout: 20000
+      maximum-pool-size: 20
+      pool-name: pizza-pool
+  jpa:
+#    show-sql: true
+    hibernate:
+      ddl-auto: update
+#OAuth
+  security:
+    oauth2:
+      client:
+        registration:
+          facebook:
+            clientId: 931121651027117
+            clientSecret: 7ae1bd748b9101ab9e0eaa63f0985551
+            scope: email, public_profile

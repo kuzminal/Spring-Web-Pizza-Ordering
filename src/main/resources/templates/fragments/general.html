@@ -14,35 +14,30 @@
         <a class="navbar-brand" th:href="@{/}">Pizza Cloud</a>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
-                <li th:if="${main}" class="nav-item active">
-                    <a class="nav-link" th:href="@{/}" sec:authorize="isAuthenticated()"
-                       th:text="#{navigation.home}"></a>
+                <li class="nav-item" sec:authorize="isAuthenticated()">
+                    <a th:if="${main}" class="nav-link active" th:href="@{/}" th:text="#{navigation.home}"></a>
+                    <a th:unless="${main}" class="nav-link" th:href="@{/}" th:text="#{navigation.home}"></a>
                 </li>
-                <li th:unless="${main}" class="nav-item">
-                    <a class="nav-link" th:href="@{/}" sec:authorize="isAuthenticated()"
-                       th:text="#{navigation.home}"></a>
+                <li class="nav-item" sec:authorize="isAuthenticated()">
+                    <a class="nav-link active" th:if="${design}" th:href="@{/design}" th:text="#{navigation.design}"></a>
+                    <a class="nav-link" th:unless="${design}" th:href="@{/design}" th:text="#{navigation.design}"></a>
                 </li>
-                <li th:if="${design}" class="nav-item active">
-                    <a class="nav-link" th:href="@{/design}" sec:authorize="isAuthenticated()"
-                       th:text="#{navigation.design}"></a>
-                </li>
-                <li th:unless="${design}" class="nav-item">
-                    <a class="nav-link" th:href="@{/design}" sec:authorize="isAuthenticated()"
-                       th:text="#{navigation.design}"></a>
-                </li>
-                <li th:if="${orders}" class="nav-item active">
-                    <a class="nav-link" th:href="@{/orders/current}" sec:authorize="isAuthenticated()"
-                       th:text="#{navigation.orders}"></a>
-                </li>
-                <li th:unless="${orders}" class="nav-item">
-                    <a class="nav-link" th:href="@{/orders/current}" sec:authorize="isAuthenticated()"
-                       th:text="#{navigation.orders}"></a>
+                <li class="nav-item dropdown" sec:authorize="isAuthenticated()">
+                    <a th:if="${orders}" href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown" th:text="#{navigation.orders}"></a>
+                    <a th:unless="${orders}" href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" th:text="#{navigation.orders}"></a>
+                    <div class="dropdown-menu">
+                        <a th:href="@{/orders}" class="dropdown-item">Мои заказы</a>
+                        <a th:href="@{/orders/current}" class="dropdown-item">Создать новый</a>
+                        <!--<div class="dropdown-divider"></div>
+                        <a href="#"class="dropdown-item">Trash</a>-->
+                    </div>
                 </li>
                 <!--<li class="nav-item">
                     <a class="nav-link disabled" href="#">Disabled</a>
                 </li> -->
             </ul>
             <!--            Логин-->
+            <span class="navbar-text text-light" sec:authorize="isAuthenticated()" sec:authentication="principal.fullname"></span>
             <a class="btn btn-sm btn-outline-danger" sec:authorize="isAuthenticated()" th:href="@{/logout}"
                th:text="#{navigation.signout}">Sign
                 out</a>
@@ -78,7 +73,7 @@
     </script>
 </footer>
 <script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
-<script th:src="@{/webjars/popper.js/2.5.4/cjs/popper.js}"></script>
 <script th:src="@{/webjars/bootstrap/4.6.0/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/popper.js}"></script>
 </body>
 </html>

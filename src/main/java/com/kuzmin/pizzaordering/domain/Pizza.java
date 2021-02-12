@@ -25,6 +25,16 @@ public class Pizza {
     @JoinColumn(name = "order_id")
     private PizzaOrder pizzaOrder;
 
+    private boolean required;
+
+    public boolean isRequired() {
+        return required;
+    }
+
+    public void setRequired(boolean required) {
+        this.required = required;
+    }
+
     public void addIngredient(Ingredient ingredient) {
         this.ingredients.add(ingredient);
     }

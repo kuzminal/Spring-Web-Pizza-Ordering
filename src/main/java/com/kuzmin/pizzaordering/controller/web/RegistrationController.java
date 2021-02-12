@@ -1,4 +1,4 @@
-package com.kuzmin.pizzaordering.controller;
+package com.kuzmin.pizzaordering.controller.web;
 
 import com.kuzmin.pizzaordering.domain.PizzaOrder;
 import com.kuzmin.pizzaordering.domain.RegistrationForm;

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/webjars/bootstrap/4.6.0/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link rel="stylesheet" th:href="@{/css/styles.css}"/>
+</head>
+<body>
+<header th:insert="fragments/general.html :: header"></header>
+<main role="main" class="container">
+    <h2>Мои заказы</h2>
+    <div class="table-responsive">
+        <table class="table table-striped table-sm">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Наименование заказа</th>
+                <th>Город</th>
+                <th>Индекс</th>
+                <th>Улица</th>
+            </tr>
+            </thead>
+            <tbody>
+            <div th:each="order : ${orders}">
+                <tr>
+                    <td th:text="${order.id}"></td>
+                    <td th:text="${order.deliveryName}"></td>
+                    <td th:text="${order.deliveryCity}"></td>
+                    <td th:text="${order.deliveryZip}"></td>
+                    <td th:text="${order.deliveryStreet}"></td>
+                </tr>
+            </div>
+            </tbody>
+        </table>
+    </div>
+</main>
+<div th:insert="fragments/general.html :: footer"></div>
+<!-- Bootstrap core JavaScript
+    ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.6.0/js/bootstrap.min.js}"></script>
+</body>
+</html>
