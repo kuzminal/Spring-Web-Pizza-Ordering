@@ -37,7 +37,7 @@
                 </li> -->
             </ul>
             <!--            Логин-->
-            <span class="navbar-text text-light" sec:authorize="isAuthenticated()" sec:authentication="principal.fullname"></span>
+            <span class="navbar-text text-light pr-4" sec:authorize="isAuthenticated()" sec:authentication="principal.fullname"></span>
             <a class="btn btn-sm btn-outline-danger" sec:authorize="isAuthenticated()" th:href="@{/logout}"
                th:text="#{navigation.signout}">Sign
                 out</a>

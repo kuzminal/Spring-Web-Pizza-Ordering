@@ -39,7 +39,7 @@ public class OrderService {
                 .collect(Collectors.toList());
     }
 
-    private PizzaOrderDTO matToPizzaDto(PizzaOrder order) {
+    public PizzaOrderDTO matToPizzaDto(PizzaOrder order) {
         PizzaOrderDTO dto = new PizzaOrderDTO();
         dto.setId(order.getId());
         dto.setPlacedAt(order.getPlacedAt());
@@ -55,7 +55,7 @@ public class OrderService {
         return dto;
     }
 
-    private UserDTO mapToUserDto(User user){
+    public UserDTO mapToUserDto(User user){
         UserDTO dto = new UserDTO();
         dto.setId(user.getId());
         dto.setUsername(user.getUsername());

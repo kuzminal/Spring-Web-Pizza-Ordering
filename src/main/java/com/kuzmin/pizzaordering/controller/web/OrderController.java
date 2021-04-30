@@ -4,11 +4,10 @@ import com.kuzmin.pizzaordering.config.OrderProps;
 import com.kuzmin.pizzaordering.domain.PizzaOrder;
 import com.kuzmin.pizzaordering.domain.User;
 import com.kuzmin.pizzaordering.repository.OrderRepository;
-import com.kuzmin.pizzaordering.repository.UserRepository;
+import com.kuzmin.pizzaordering.messaging.JmsOrderMessagingService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,10 +26,12 @@ import javax.validation.Valid;
 public class OrderController {
     private final OrderRepository orderRepo;
     private final OrderProps props;
+    private final JmsOrderMessagingService jmsOrderMessagingService;
 
-    public OrderController(OrderRepository orderRepo, OrderProps props) {
+    public OrderController(OrderRepository orderRepo, OrderProps props, JmsOrderMessagingService jmsOrderMessagingService) {
         this.orderRepo = orderRepo;
         this.props = props;
+        this.jmsOrderMessagingService = jmsOrderMessagingService;
     }
 
     @GetMapping("/current")
@@ -50,6 +51,7 @@ public class OrderController {
         }
         order.setUser(user);
         orderRepo.save(order);
+        jmsOrderMessagingService.sendOrder(order);
         sessionStatus.setComplete();
         return "redirect:/orders";
     }
