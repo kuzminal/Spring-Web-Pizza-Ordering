@@ -3,8 +3,9 @@ package com.kuzmin.pizzaordering.controller.web;
 import com.kuzmin.pizzaordering.config.OrderProps;
 import com.kuzmin.pizzaordering.domain.PizzaOrder;
 import com.kuzmin.pizzaordering.domain.User;
+import com.kuzmin.pizzaordering.messaging.KafkaOrderMessagingService;
 import com.kuzmin.pizzaordering.repository.OrderRepository;
-import com.kuzmin.pizzaordering.messaging.JmsOrderMessagingService;
+import com.kuzmin.pizzaordering.service.OrderService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -26,12 +27,14 @@ import javax.validation.Valid;
 public class OrderController {
     private final OrderRepository orderRepo;
     private final OrderProps props;
-    private final JmsOrderMessagingService jmsOrderMessagingService;
+    private final OrderService orderService;
+    private final KafkaOrderMessagingService kafkaOrderMessagingService;
 
-    public OrderController(OrderRepository orderRepo, OrderProps props, JmsOrderMessagingService jmsOrderMessagingService) {
+    public OrderController(OrderRepository orderRepo, OrderProps props, OrderService orderService, KafkaOrderMessagingService kafkaOrderMessagingService) {
         this.orderRepo = orderRepo;
         this.props = props;
-        this.jmsOrderMessagingService = jmsOrderMessagingService;
+        this.orderService = orderService;
+        this.kafkaOrderMessagingService = kafkaOrderMessagingService;
     }
 
     @GetMapping("/current")
@@ -51,7 +54,7 @@ public class OrderController {
         }
         order.setUser(user);
         orderRepo.save(order);
-        jmsOrderMessagingService.sendOrder(order);
+        kafkaOrderMessagingService.sendOrder(orderService.matToPizzaDto(order));
         sessionStatus.setComplete();
         return "redirect:/orders";
     }

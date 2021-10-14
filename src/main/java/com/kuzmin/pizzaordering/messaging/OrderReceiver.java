@@ -1,7 +1,7 @@
 package com.kuzmin.pizzaordering.messaging;
 
-import com.kuzmin.pizzaordering.model.PizzaOrderDTO;
+import com.kuzmin.pizzaordering.domain.PizzaOrder;
 
 public interface OrderReceiver {
-    PizzaOrderDTO receiveOrder();
+    PizzaOrder receiveOrder();
 }

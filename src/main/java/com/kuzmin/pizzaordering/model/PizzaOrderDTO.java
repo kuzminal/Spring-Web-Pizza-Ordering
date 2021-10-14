@@ -1,11 +1,7 @@
 package com.kuzmin.pizzaordering.model;
 
-import com.kuzmin.pizzaordering.domain.Pizza;
-import com.kuzmin.pizzaordering.domain.User;
 import lombok.Data;
-import org.springframework.data.annotation.CreatedDate;
 
-import javax.persistence.*;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;

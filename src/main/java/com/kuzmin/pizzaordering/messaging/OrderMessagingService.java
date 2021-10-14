@@ -1,9 +1,9 @@
 package com.kuzmin.pizzaordering.messaging;
 
-import com.kuzmin.pizzaordering.domain.PizzaOrder;
+import com.kuzmin.pizzaordering.model.PizzaOrderDTO;
 
 public interface OrderMessagingService {
 
-  void sendOrder(PizzaOrder order);
+  void sendOrder(PizzaOrderDTO order);
   
 }
